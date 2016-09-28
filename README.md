@@ -1,7 +1,14 @@
-# A starter webpack project for React
+# Foley Base
 
-This is a starter project that uses webpack to transpile and bundle ES6 React code. To use, clone this repo and then `npm install`.
+## MVP
+- [ ] As a user I would like to be able to upload a sound file.
+- [ ] As a user I would like to be able to play back my sound.
+- [ ] As a user I would like to be able to record a sound directly from my device and have it uploaded.
 
-To start the development server with a watcher that refreshes your browser, run `npm start`. The assets built by webpack are placed in `server/static`. This folder is defined as a static folder in an Express.js server that can be started with `npm run server`.
-
-Additional components should be placed in `client/components`.
+### Other Features
+- [ ] As a user I would like to be able to perform basic editing of the sound, trimming, EQ etc...
+- [ ] As a user I would like to be able to provide a brief description of what I have recorded.
+- [ ] As a user I would like to be able to comment on a sound.
+- [ ] As a user I would like to be able to up/down vote a sound.
+- [ ] As a user I would like SoundCloud integration so that I can easily share and preview each clip.
+- [ ] As a user I would like to be able to filter the database by tag/metadata
