@@ -9,7 +9,10 @@ module.exports = {
       test: /\.jsx?$/,
       loader: 'babel-loader',
       exclude: /node_modules/
-    }]
+    }],
+    noParse: [
+      /aws\-sdk/,
+    ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']

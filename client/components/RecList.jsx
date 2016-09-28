@@ -4,9 +4,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-      <p>
-        <em>{this.props.text}</em>
-      </p>
+        {this.props.audio}
       </div>
     )
   }
