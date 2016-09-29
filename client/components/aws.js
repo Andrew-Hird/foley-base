@@ -1,7 +1,8 @@
 import request from 'aws-sdk/dist/aws-sdk'
 
 export default {
-  getAudio: getAudio
+  getAudio: getAudio,
+  addAudio: addAudio
 }
 
 const AWS = window.AWS
@@ -32,24 +33,34 @@ function getAudio(cb) {
   })
 }
 
-
-
 function addAudio(clipInfo) {
-  s3bucket.createBucket(function() {
-    var params = {
-      Key: clipAuthor + '-' + clipName + '.ogg',
-      Body: data,
-      Metadata: {
-        author: clipAuthor,
-        clipName: clipName
+  return new Promise(function(resolve, reject) {
+
+    if (clipInfo) {
+      try {
+        s3bucket.createBucket(function() {
+          var params = {
+            Key: clipInfo.clipAuthor + '-' + clipInfo.clipName + '.ogg',
+            Body: clipInfo.blob,
+            Metadata: {
+              author: clipInfo.clipAuthor,
+              clipName: clipInfo.clipName
+            }
+          }
+          s3bucket.upload(params, function(err, data) {
+            if (err) {
+              console.log("Error uploading data: ", err);
+            } else {
+              console.log("Successfully uploaded data to audio-foley-base bucket")
+            }
+          })
+        })
+      } catch (err) {
+        reject(err)
       }
+    } else {
+      reject(new Error('could not get clipInfo'))
     }
-    s3bucket.upload(params, function(err, data) {
-      if (err) {
-        console.log("Error uploading data: ", err);
-      } else {
-        console.log("Successfully uploaded data to audio-foley-base bucket")
-      }
-    })
+    resolve()
   })
 }
