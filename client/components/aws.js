@@ -38,22 +38,20 @@ function addAudio(clipInfo) {
 
     if (clipInfo) {
       try {
-        s3bucket.createBucket(function() {
-          var params = {
-            Key: clipInfo.clipAuthor + '-' + clipInfo.clipName + '.ogg',
-            Body: clipInfo.blob,
-            Metadata: {
-              author: clipInfo.clipAuthor,
-              clipName: clipInfo.clipName
-            }
+        var params = {
+          Key: clipInfo.clipAuthor + '-' + clipInfo.clipName + '.ogg',
+          Body: clipInfo.blob,
+          Metadata: {
+            author: clipInfo.clipAuthor,
+            clipName: clipInfo.clipName
           }
-          s3bucket.upload(params, function(err, data) {
-            if (err) {
-              console.log("Error uploading data: ", err);
-            } else {
-              console.log("Successfully uploaded data to audio-foley-base bucket")
-            }
-          })
+        }
+        s3bucket.upload(params, function(err, data) {
+          if (err) {
+            console.log("Error uploading data: ", err)
+          } else {
+            console.log("Successfully uploaded data to audio-foley-base bucket")
+          }
         })
       } catch (err) {
         reject(err)

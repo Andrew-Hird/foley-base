@@ -1,6 +1,7 @@
 import React from 'react'
 import aws from './aws'
 import record from './record'
+import visual from './visual'
 
 import Header from './Header'
 import Visualiser from './Visualiser'
@@ -9,7 +10,9 @@ import Recordings from './Recordings'
 
 export default React.createClass({
   getInitialState() {
-    return {audio: []}
+    return {
+      audio: []
+    }
   },
 
   componentDidMount() {
@@ -27,14 +30,14 @@ export default React.createClass({
   endRecord() {
     record.endRecord()
     .then(this.addAudio)
-    .then(this.getAudio)
+    .then(setTimeout(this.getAudio, 3000))
     .catch(function(err) {
       console.log(err)
     })
   },
 
-  addAudio(data) {
-    aws.addAudio(data, this.getAudio)
+  addAudio(clipInfo) {
+    aws.addAudio(clipInfo)
   },
 
   renderAudio(err, audio) {
@@ -45,8 +48,8 @@ export default React.createClass({
     return (
       <div>
         <Header text="Foley Base"/>
-        <Visualiser text="visualiser goes here"/>
-        <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord}/>
+        <Visualiser visual={visual.visual}/>
+        <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} />
         <Recordings audio={this.state.audio}/>
       </div>
     )
