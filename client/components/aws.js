@@ -4,6 +4,7 @@ export default {
   getAudio: getAudio,
   addAudio: addAudio,
   addFile: addFile,
+  delAudio: delAudio
 }
 
 const AWS = window.AWS
@@ -36,7 +37,6 @@ function getAudio(cb) {
 
 function addAudio(clipInfo) {
   return new Promise(function(resolve, reject) {
-
     if (clipInfo) {
       try {
         var params = {
@@ -67,7 +67,6 @@ function addAudio(clipInfo) {
 function addFile(file) {
   console.log(file)
   return new Promise(function(resolve, reject) {
-
     if (file) {
       try {
         var params = {
@@ -86,6 +85,30 @@ function addFile(file) {
       }
     } else {
       reject(new Error('could not upload file'))
+    }
+    resolve()
+  })
+}
+
+function delAudio(clipName) {
+  return new Promise(function(resolve, reject) {
+    if (clipName) {
+      try {
+        var params = {
+          Key: clipName
+        }
+        s3bucket.deleteObject(params, function(err, clipName) {
+          if (err) {
+            console.log(err, err.stack)
+          } else {
+            console.log("deleted clip")
+          }
+        })
+      } catch (err) {
+        reject(err)
+      }
+    } else {
+      reject(new Error('could not delete file'))
     }
     resolve()
   })

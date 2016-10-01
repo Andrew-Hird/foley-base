@@ -24,12 +24,23 @@ export default React.createClass({
     setTimeout(this.getAudio, 3000)
   },
 
+  delAudio(clipName) {
+    aws.delAudio(clipName)
+    .then(setTimeout(this.getAudio, 500))
+    .catch(function(err) {
+      console.log(err)
+    })
+  },
+
   startRecord() {
     record.startRecord()
   },
 
   endRecord() {
-    record.endRecord().then(this.addAudio).then(setTimeout(this.getAudio, 3000)).catch(function(err) {
+    record.endRecord()
+    .then(this.addAudio)
+    .then(setTimeout(this.getAudio, 3000))
+    .catch(function(err) {
       console.log(err)
     })
   },
@@ -48,7 +59,7 @@ export default React.createClass({
         <div id="main">
           <Header text="Foley Base"/>
           <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload}/>
-          <Recordings audio={this.state.audio}/>
+          <Recordings audio={this.state.audio} delAudio={this.delAudio}/>
         </div>
       </Center>
     )

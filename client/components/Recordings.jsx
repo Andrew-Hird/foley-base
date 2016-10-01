@@ -10,7 +10,8 @@ export default React.createClass({
         {this.props.audio.map((audio, i) => {
           return <RecList
             key={i}
-            audio={audio.Key} />
+            audio={audio.Key}
+            delAudio={this.props.delAudio} />
         })}
       </div>
     )
