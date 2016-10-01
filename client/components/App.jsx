@@ -23,6 +23,10 @@ export default React.createClass({
     aws.getAudio(this.renderAudio)
   },
 
+  afterUpload() {
+    setTimeout(this.getAudio, 3000)
+  },
+
   startRecord() {
     record.startRecord()
   },
@@ -49,7 +53,8 @@ export default React.createClass({
       <div>
         <Header text="Foley Base"/>
         <Visualiser visual={visual.visual}/>
-        <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} />
+        <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord}
+        afterUpload={this.afterUpload} />
         <Recordings audio={this.state.audio}/>
       </div>
     )

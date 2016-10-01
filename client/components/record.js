@@ -22,7 +22,6 @@ function startRecord() {
 
         mediaRecorder.start()
         console.log(mediaRecorder.state)
-        // console.log("recorded started")
 
         mediaRecorder.ondataavailable = function(e) {
           chunks.push(e.data)
@@ -44,7 +43,6 @@ function endRecord() {
       try {
         mediaRecorder.stop()
         console.log(mediaRecorder.state)
-        // console.log("recorder stopped")
       } catch (err) {
         reject(err)
       }
@@ -53,7 +51,6 @@ function endRecord() {
     }
 
     mediaRecorder.onstop = function(e) {
-      // console.log("recorded stopped")
 
       var clipName = prompt('Enter a name of your sound clip')
       var clipAuthor = prompt('What is your name?')
