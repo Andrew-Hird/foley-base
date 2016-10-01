@@ -1,8 +1,3 @@
-export default {
-  visual: visual
-}
-
-function visual() {
   navigator.getUserMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMeida ||
     navigator.mozGetUserMedia
@@ -42,7 +37,7 @@ function visual() {
         function draw() {
           var drawVisual = requestAnimationFrame(draw)
           analyser.getByteTimeDomainData(dataArray);
-          canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+          canvasCtx.fillStyle = 'tomato';
           canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
           canvasCtx.lineWidth = 2;
           canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
@@ -74,4 +69,3 @@ function visual() {
         console.log('The following gUM error occured' + err)
       })
   }
-}

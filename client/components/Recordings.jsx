@@ -5,9 +5,7 @@ import RecList from './RecList'
 export default React.createClass({
   render() {
     return (
-      <div>
-
-
+      <div id="rec">
         <h2>Recordings</h2>
         {this.props.audio.map((audio, i) => {
           return <RecList

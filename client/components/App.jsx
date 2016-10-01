@@ -1,18 +1,15 @@
 import React from 'react'
 import aws from './aws'
+import Center from 'react-center'
 import record from './record'
-import visual from './visual'
 
 import Header from './Header'
-import Visualiser from './Visualiser'
 import NewRec from './NewRec'
 import Recordings from './Recordings'
 
 export default React.createClass({
   getInitialState() {
-    return {
-      audio: []
-    }
+    return {audio: []}
   },
 
   componentDidMount() {
@@ -32,10 +29,7 @@ export default React.createClass({
   },
 
   endRecord() {
-    record.endRecord()
-    .then(this.addAudio)
-    .then(setTimeout(this.getAudio, 3000))
-    .catch(function(err) {
+    record.endRecord().then(this.addAudio).then(setTimeout(this.getAudio, 3000)).catch(function(err) {
       console.log(err)
     })
   },
@@ -50,13 +44,13 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
-        <Header text="Foley Base"/>
-        <Visualiser visual={visual.visual}/>
-        <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord}
-        afterUpload={this.afterUpload} />
-        <Recordings audio={this.state.audio}/>
-      </div>
+      <Center>
+        <div id="main">
+          <Header text="Foley Base"/>
+          <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload}/>
+          <Recordings audio={this.state.audio}/>
+        </div>
+      </Center>
     )
   }
 })

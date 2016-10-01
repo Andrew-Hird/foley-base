@@ -38,7 +38,6 @@ function startRecord() {
 
 function endRecord() {
   return new Promise(function(resolve, reject) {
-
     if (mediaRecorder) {
       try {
         mediaRecorder.stop()
@@ -53,7 +52,7 @@ function endRecord() {
     mediaRecorder.onstop = function(e) {
 
       var clipName = prompt('Enter a name of your sound clip')
-      var clipAuthor = prompt('What is your name?')
+      var clipAuthor = prompt('Who recorded the sound clip?')
       var blob = new Blob(chunks, {
         'type': 'audio/ogg; codecs=opus'
       })
@@ -62,6 +61,7 @@ function endRecord() {
         clipAuthor,
         blob
       }
+      chunks = []
       resolve(clipInfo)
     }
   })
