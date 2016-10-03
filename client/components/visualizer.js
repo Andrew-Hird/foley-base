@@ -1,3 +1,18 @@
+export default {
+  blackLine: blackLine,
+  redLine: redLine
+}
+
+var line = 'black'
+
+function blackLine () {
+  line = 'black'
+}
+
+function redLine () {
+  line = '#e60000'
+}
+
   navigator.getUserMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMeida ||
     navigator.mozGetUserMedia
@@ -37,10 +52,11 @@
         function draw() {
           var drawVisual = requestAnimationFrame(draw)
           analyser.getByteTimeDomainData(dataArray);
-          canvasCtx.fillStyle = 'tomato';
-          canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-          canvasCtx.lineWidth = 2;
-          canvasCtx.strokeStyle = 'black';
+          // canvasCtx.fillStyle = 'tomato';
+          // canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+          canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+          canvasCtx.lineWidth = 4;
+          canvasCtx.strokeStyle = line;
 
           canvasCtx.beginPath();
 

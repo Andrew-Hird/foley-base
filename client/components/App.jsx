@@ -2,6 +2,7 @@ import React from 'react'
 import aws from './aws'
 import Center from 'react-center'
 import record from './record'
+import visualizer from './visualizer'
 
 import Header from './Header'
 import NewRec from './NewRec'
@@ -25,6 +26,10 @@ export default React.createClass({
 
   },
 
+  audioDetails(clipName) {
+    aws.audioDetails(clipName, this.renderAudio)
+  },
+
   afterUpload() {
     this.setState({isLoading: true})
     setTimeout(this.getAudio, 3000)
@@ -40,11 +45,13 @@ export default React.createClass({
   },
 
   startRecord() {
+    visualizer.redLine()
     record.startRecord()
     this.setState({isRec: true})
   },
 
   endRecord() {
+    visualizer.blackLine()
     record.endRecord()
     .then(this.setState({isRec: false, isLoading: true}))
     .then(this.addAudio)
@@ -76,7 +83,7 @@ export default React.createClass({
             <img className={this.state.isLoading ? 'isLoading' : 'notLoading'} src="https://popp.undp.org/Style%20Library/POPP/images/load.gif" />
             <hr />
             <div className="new-rec-con">
-              <Recordings audio={this.state.audio} delAudio={this.delAudio}/>
+              <Recordings audio={this.state.audio} delAudio={this.delAudio} audioDetails={this.audioDetails}/>
             </div>
           </div>
       </Center>

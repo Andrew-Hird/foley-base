@@ -10,7 +10,8 @@ export default React.createClass({
           return <RecList
             key={i}
             audio={audio.Key}
-            delAudio={this.props.delAudio} />
+            delAudio={this.props.delAudio}
+            audioDetails={this.props.audioDetails} />
         })}
       </div>
     )

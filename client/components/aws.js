@@ -2,6 +2,7 @@ import request from 'aws-sdk/dist/aws-sdk'
 
 export default {
   getAudio: getAudio,
+  audioDetails: audioDetails,
   addAudio: addAudio,
   addFile: addFile,
   delAudio: delAudio
@@ -33,6 +34,27 @@ function getAudio(cb) {
       cb(err)
     }
   })
+}
+
+function audioDetails(clipName, cb) {
+  console.log(clipName)
+  const params = {
+    Bucket: 'audio-foley-base',
+    Key: clipName
+    // Key: "andrew-tues.ogg"
+  }
+  s3bucket.getObject(params, function(err, data) {
+    let details = []
+    if (!err) {
+      console.log(this.httpResponse)
+      details = data
+      console.log(details)
+      cb(null, details)
+    } else {
+      cb(err)
+    }
+  })
+
 }
 
 function addAudio(clipInfo) {
