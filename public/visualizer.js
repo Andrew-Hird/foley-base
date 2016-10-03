@@ -40,7 +40,7 @@
           canvasCtx.fillStyle = 'tomato';
           canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
           canvasCtx.lineWidth = 2;
-          canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+          canvasCtx.strokeStyle = 'black';
 
           canvasCtx.beginPath();
 

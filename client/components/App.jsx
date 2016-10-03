@@ -9,7 +9,11 @@ import Recordings from './Recordings'
 
 export default React.createClass({
   getInitialState() {
-    return {audio: []}
+    return {
+      audio: [],
+      isRec: false,
+      isLoading: true
+    }
   },
 
   componentDidMount() {
@@ -18,15 +22,18 @@ export default React.createClass({
 
   getAudio() {
     aws.getAudio(this.renderAudio)
+
   },
 
   afterUpload() {
+    this.setState({isLoading: true})
     setTimeout(this.getAudio, 3000)
   },
 
   delAudio(clipName) {
+    this.setState({isLoading: true})
     aws.delAudio(clipName)
-    .then(setTimeout(this.getAudio, 500))
+    .then(setTimeout(this.getAudio, 1000))
     .catch(function(err) {
       console.log(err)
     })
@@ -34,10 +41,12 @@ export default React.createClass({
 
   startRecord() {
     record.startRecord()
+    this.setState({isRec: true})
   },
 
   endRecord() {
     record.endRecord()
+    .then(this.setState({isRec: false, isLoading: true}))
     .then(this.addAudio)
     .then(setTimeout(this.getAudio, 3000))
     .catch(function(err) {
@@ -50,17 +59,26 @@ export default React.createClass({
   },
 
   renderAudio(err, audio) {
-    this.setState({audio: audio})
+    this.setState({
+      audio: audio,
+      isLoading: false
+    })
   },
 
   render() {
     return (
       <Center>
         <div id="main">
-          <Header text="Foley Base"/>
-          <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload}/>
-          <Recordings audio={this.state.audio} delAudio={this.delAudio}/>
-        </div>
+            <Header text="Foley Base"/>
+            <div className="rec-con">
+              <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload} isRec={this.state.isRec}/>
+            </div>
+            <img className={this.state.isLoading ? 'isLoading' : 'notLoading'} src="https://popp.undp.org/Style%20Library/POPP/images/load.gif" />
+            <hr />
+            <div className="new-rec-con">
+              <Recordings audio={this.state.audio} delAudio={this.delAudio}/>
+            </div>
+          </div>
       </Center>
     )
   }
