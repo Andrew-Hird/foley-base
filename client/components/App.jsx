@@ -12,6 +12,7 @@ export default React.createClass({
   getInitialState() {
     return {
       audio: [],
+      details: [],
       isRec: false,
       isLoading: true
     }
@@ -27,7 +28,13 @@ export default React.createClass({
   },
 
   audioDetails(clipName) {
-    aws.audioDetails(clipName, this.renderAudio)
+    aws.audioDetails(clipName, this.renderDetails)
+  },
+
+  renderDetails(err, details) {
+    this.setState({
+      details: details
+    })
   },
 
   afterUpload() {
@@ -74,7 +81,6 @@ export default React.createClass({
 
   render() {
     return (
-      <Center>
         <div id="main">
             <Header text="Foley Base"/>
             <div className="rec-con">
@@ -83,10 +89,9 @@ export default React.createClass({
             <img className={this.state.isLoading ? 'isLoading' : 'notLoading'} src="https://popp.undp.org/Style%20Library/POPP/images/load.gif" />
             <hr />
             <div className="new-rec-con">
-              <Recordings audio={this.state.audio} delAudio={this.delAudio} audioDetails={this.audioDetails}/>
+              <Recordings audio={this.state.audio} details={this.state.details} delAudio={this.delAudio} audioDetails={this.audioDetails}/>
             </div>
           </div>
-      </Center>
     )
   }
 })

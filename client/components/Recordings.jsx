@@ -13,6 +13,12 @@ export default React.createClass({
             delAudio={this.props.delAudio}
             audioDetails={this.props.audioDetails} />
         })}
+        {/* {this.props.details.map((details, i) => {
+          return <RecList
+          key={i}
+          author={details.author}
+          clipName={details.clipName} />
+        })} */}
       </div>
     )
   }

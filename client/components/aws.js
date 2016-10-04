@@ -37,24 +37,22 @@ function getAudio(cb) {
 }
 
 function audioDetails(clipName, cb) {
-  console.log(clipName)
   const params = {
     Bucket: 'audio-foley-base',
     Key: clipName
-    // Key: "andrew-tues.ogg"
   }
   s3bucket.getObject(params, function(err, data) {
     let details = []
     if (!err) {
-      console.log(this.httpResponse)
-      details = data
-      console.log(details)
+      details = {
+        author: data.Metadata.author,
+        clipName: data.Metadata.clipname
+      }
       cb(null, details)
     } else {
       cb(err)
     }
   })
-
 }
 
 function addAudio(clipInfo) {
