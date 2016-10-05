@@ -6,19 +6,16 @@ export default React.createClass({
   render() {
     return (
       <div id="rec">
-        {this.props.audio.map((audio, i) => {
+        {this.props.allAudio.map((allAudio, i) => {
           return <RecList
             key={i}
-            audio={audio.Key}
+            fileName={allAudio.Key}
+            author={allAudio.author}
+            clipName={allAudio.clipName}
+            clipDescription={allAudio.clipDescription}
             delAudio={this.props.delAudio}
             audioDetails={this.props.audioDetails} />
         })}
-        {/* {this.props.details.map((details, i) => {
-          return <RecList
-          key={i}
-          author={details.author}
-          clipName={details.clipName} />
-        })} */}
       </div>
     )
   }

@@ -20,9 +20,17 @@ export default React.createClass({
         </div>
 
         <div id="upload">
-          <ReactS3Uploader id="upload" signingUrl="/s3/sign" accept="audio/*" onProgress={this.onUploadProgress} onError={this.onUploadError} onFinish={this.props.afterUpload} uploadRequestHeaders={{
+          <ReactS3Uploader
+          id="upload"
+          signingUrl="/s3/sign"
+          accept="audio/*"
+          onProgress={this.onUploadProgress}
+          onError={this.onUploadError}
+          onFinish={this.props.afterUpload}
+          uploadRequestHeaders={{
             'x-amz-acl': 'public-read'
-          }} contentDisposition="auto"/>
+          }}
+          contentDisposition="auto"/>
         </div>
       </div>
     )

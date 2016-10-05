@@ -20,7 +20,9 @@ const s3bucket = new AWS.S3({
   }
 })
 
+let allAudio = []
 function getAudio(cb) {
+  allAudio = []
   const params = {
     Bucket: 'audio-foley-base'
   }
@@ -29,7 +31,10 @@ function getAudio(cb) {
     let audio = []
     if (!err) {
       audio = data.Contents
-      cb(null, audio)
+      for (var i = 0; i < audio.length; i++) {
+        audioDetails(audio[i].Key, cb)
+      }
+      cb(null, allAudio)
     } else {
       cb(err)
     }
@@ -44,11 +49,13 @@ function audioDetails(clipName, cb) {
   s3bucket.getObject(params, function(err, data) {
     let details = []
     if (!err) {
-      details = {
+      allAudio.push({
+        Key: clipName,
         author: data.Metadata.author,
-        clipName: data.Metadata.clipname
-      }
-      cb(null, details)
+        clipName: data.Metadata.clipname,
+        clipDescription: data.Metadata.clipdescription
+      })
+      cb(null, allAudio)
     } else {
       cb(err)
     }
@@ -64,7 +71,8 @@ function addAudio(clipInfo) {
           Body: clipInfo.blob,
           Metadata: {
             author: clipInfo.clipAuthor,
-            clipName: clipInfo.clipName
+            clipName: clipInfo.clipName,
+            clipDescription: clipInfo.clipDescription
           }
         }
         s3bucket.upload(params, function(err, data) {

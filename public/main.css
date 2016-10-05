@@ -20,6 +20,13 @@ canvas {
   margin-right: 40px;
 }
 
+.recButt:hover {
+  border-radius: 50%;
+  -moz-box-shadow: 0 0 10px #ccc;
+  -webkit-box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px #ccc;
+}
+
 .isLoading {
   display: block;
   margin: 0 auto;
@@ -63,12 +70,19 @@ button {
   color: black;
   margin-left: 5px;
   margin-right: 5px;
+  margin-top: 10px;
   padding-bottom: 20px;
   height: 22px;
   border-radius: 5px;
   background-color: tomato;
   border: 2px solid tomato;
   box-shadow: none;
+}
+
+button:hover {
+  -moz-box-shadow: 0 0 10px #ccc;
+  -webkit-box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px #ccc;
 }
 
 audio, button {

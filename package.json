@@ -39,7 +39,6 @@
     "express": "^4.13.4",
     "ladda": "^1.0.0",
     "react-bootstrap-grid": "^1.0.0",
-    "react-center": "^1.1.1",
     "react-s3-uploader": "^3.3.0"
   }
 }
