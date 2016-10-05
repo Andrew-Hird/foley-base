@@ -3,6 +3,10 @@ import ReactS3Uploader from 'react-s3-uploader'
 
 let fileInput = null
 
+function handleInput(e) {
+  console.log(e.currentTarget.files[0])
+}
+
 export default React.createClass({
   render() {
     return (
@@ -20,7 +24,7 @@ export default React.createClass({
         </div>
 
         <div id="upload">
-          <ReactS3Uploader
+          {/* <ReactS3Uploader
           id="upload"
           signingUrl="/s3/sign"
           accept="audio/*"
@@ -30,9 +34,12 @@ export default React.createClass({
           uploadRequestHeaders={{
             'x-amz-acl': 'public-read'
           }}
-          contentDisposition="auto"/>
+          contentDisposition="auto"/> */}
         </div>
-      </div>
+        <input type='file' onChange={this.props.handleInput} />
+        </div>
+
+
     )
   }
 })

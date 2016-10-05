@@ -23,7 +23,6 @@ export default React.createClass({
 
   getAudio() {
     aws.getAudio(this.renderAudio)
-
   },
 
   afterUpload() {
@@ -57,6 +56,16 @@ export default React.createClass({
     })
   },
 
+  handleInput(e) {
+    aws.addFile(e.currentTarget.files[0])
+    .then(this.setState({isRec: false, isLoading: true}))
+    .then(setTimeout(this.getAudio, 3000))
+    .catch(function(err) {
+      console.log(err)
+    })
+
+  },
+
   addAudio(clipInfo) {
     aws.addAudio(clipInfo)
   },
@@ -73,7 +82,7 @@ export default React.createClass({
         <div id="main">
             <Header text="Foley Base"/>
             <div className="rec-con">
-              <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload} isRec={this.state.isRec}/>
+              <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload} isRec={this.state.isRec} handleInput={this.handleInput} />
             </div>
             <img className={this.state.isLoading ? 'isLoading' : 'notLoading'} src="https://popp.undp.org/Style%20Library/POPP/images/load.gif" />
             <hr />

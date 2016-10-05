@@ -19,7 +19,7 @@ export default React.createClass({
     return (
         <div id="recList">
           {name}
-          <audio controls="controls" src ={'https://s3-us-west-2.amazonaws.com/audio-foley-base/' + this.props.fileName} type="audio/ogg"></audio>
+          <audio controls="controls" src ={'https://s3-us-west-2.amazonaws.com/audio-foley-base/' + this.props.fileName}></audio>
           <br/>
           {description}
           <br/>
