@@ -1,5 +1,7 @@
 body {
   background-color: tomato;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 2em;
 }
 
 canvas {
@@ -57,8 +59,11 @@ canvas {
 }
 
 h1 {
+  font-family: 'Baloo Bhai', cursive;
+  color: black;
   text-align: center;
-  font-size: 4em;
+  font-size: 4.3em;
+  text-shadow: 4px 4px 8px #ff0000;
 }
 
 audio {
@@ -71,7 +76,7 @@ button {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   height: 22px;
   border-radius: 5px;
   background-color: tomato;
@@ -117,6 +122,7 @@ audio, button {
 }
 
 #upload {
+  text-align: center;
   display: block;
   margin: 0 auto;
   margin-top: 30px;

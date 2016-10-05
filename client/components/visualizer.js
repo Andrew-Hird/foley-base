@@ -55,7 +55,7 @@ function redLine () {
           // canvasCtx.fillStyle = 'tomato';
           // canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
           canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-          canvasCtx.lineWidth = 4;
+          canvasCtx.lineWidth = 3;
           canvasCtx.strokeStyle = line;
 
           canvasCtx.beginPath();

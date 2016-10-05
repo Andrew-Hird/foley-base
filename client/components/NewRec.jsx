@@ -3,10 +3,6 @@ import ReactS3Uploader from 'react-s3-uploader'
 
 let fileInput = null
 
-function handleInput(e) {
-  console.log(e.currentTarget.files[0])
-}
-
 export default React.createClass({
   render() {
     return (
@@ -18,28 +14,12 @@ export default React.createClass({
         </div>
       </div>
         <div id="recButtons">
-          <a href="#" className="buttRec" onClick={() => this.props.startRecord()}><img className="recButt" src="http://lh5.ggpht.com/K_rviF0f2z4UHwWmm8G92UWT5Hw-RxXA2fCGP87MUPg95HNRcPQTEhwinuBcYqFObtTj=w300"/></a>
+          <a href="#" className="buttRec" onClick={() => this.props.startRecord()}><img className="recButt" src="http://www.clker.com/cliparts/d/b/c/f/13652249372108434179Record%20Button%20Microphone.svg.hi.png"/></a>
 
-          <a href="#" className="buttRec" onClick={() => this.props.endRecord()}><img className="recButt" src="https://cdn0.iconfinder.com/data/icons/command-buttons/512/Stop-512.png"/></a>
+          <a href="#" className="buttRec" onClick={() => this.props.endRecord()}><img className="recButt" src="http://www.myiconfinder.com/uploads/iconsets/9b507c9c308162d28fbf621c59b363f4.png"/></a>
         </div>
-
-        <div id="upload">
-          {/* <ReactS3Uploader
-          id="upload"
-          signingUrl="/s3/sign"
-          accept="audio/*"
-          onProgress={this.onUploadProgress}
-          onError={this.onUploadError}
-          onFinish={this.props.afterUpload}
-          uploadRequestHeaders={{
-            'x-amz-acl': 'public-read'
-          }}
-          contentDisposition="auto"/> */}
+        <input id="upload" type='file' onChange={this.props.handleInput} />
         </div>
-        <input type='file' onChange={this.props.handleInput} />
-        </div>
-
-
     )
   }
 })
