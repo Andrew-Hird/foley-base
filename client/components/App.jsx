@@ -58,7 +58,7 @@ export default React.createClass({
 
   handleInput(e) {
     aws.addFile(e.currentTarget.files[0])
-    .then(this.setState({isRec: false, isLoading: true}))
+    .then(this.setState({isLoading: true}))
     .then(setTimeout(this.getAudio, 3000))
     .catch(function(err) {
       console.log(err)

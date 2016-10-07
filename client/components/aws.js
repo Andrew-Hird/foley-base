@@ -8,10 +8,9 @@ export default {
   delAudio: delAudio
 }
 
-const AWS = window.AWS
 AWS.config.update({
-  accessKeyId: 'AKIAJPMFMWBUYEU6MURA',
-  secretAccessKey: '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'
+  accessKeyId: 'AKIAILCXQ66J4NTPBGUQ',
+  secretAccessKey: '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'
 })
 
 const s3bucket = new AWS.S3({
@@ -41,16 +40,16 @@ function getAudio(cb) {
   })
 }
 
-function audioDetails(clipName, cb) {
+function audioDetails(fileName, cb) {
   const params = {
     Bucket: 'audio-foley-base',
-    Key: clipName
+    Key: fileName
   }
   s3bucket.getObject(params, function(err, data) {
     let details = []
     if (!err) {
       allAudio.push({
-        Key: clipName,
+        Key: fileName,
         author: data.Metadata.author,
         clipName: data.Metadata.clipname,
         clipDescription: data.Metadata.clipdescription

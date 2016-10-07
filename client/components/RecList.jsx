@@ -1,13 +1,12 @@
 import React from 'react'
 
-
 export default React.createClass({
   render() {
       let name = null
       if(this.props.clipName) {
-        name = <h4>{this.props.author} - {this.props.clipName}</h4>
+        name = <h3>{this.props.author} - {this.props.clipName}</h3>
       } else {
-        name = <h4>{this.props.fileName}</h4>
+        name = <h3>{this.props.fileName}</h3>
       }
 
       let description = null
@@ -27,7 +26,7 @@ export default React.createClass({
             <button>download</button>
           </a>
           <button onClick={() => this.props.delAudio(this.props.fileName)}>delete</button>
-          <hr/>
+         <hr/>
       </div>
     )
   }
