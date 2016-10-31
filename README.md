@@ -10,7 +10,7 @@ Record and upload sounds.
 
 Currently only supported on Google Chrome.
 
-![alt text](https://github.com/Andrew-Hird/foley-base/blob/master/screen-caps/landing.png "Logo Title Text 1")
+![alt text](https://github.com/Andrew-Hird/foley-base/blob/master/screen-caps/landing.png)
 
 
 
