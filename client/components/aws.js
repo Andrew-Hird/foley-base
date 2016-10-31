@@ -1,4 +1,6 @@
 import request from 'aws-sdk/dist/aws-sdk'
+const dotenv = require('dotenv')
+dotenv.load()
 
 export default {
   getAudio: getAudio,
@@ -9,8 +11,8 @@ export default {
 }
 
 AWS.config.update({
-  accessKeyId: 'AKIAILCXQ66J4NTPBGUQ',
-  secretAccessKey: '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'
+  accessKeyId: process.env.AWS_SECRET_KEY,
+  secretAccessKey: process.env.AWS_ACCESS_KEY_ID
 })
 
 const s3bucket = new AWS.S3({
