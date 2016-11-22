@@ -2,7 +2,7 @@
 
 https://foley-base.herokuapp.com/
 
-Record and upload sounds.
+A place for sound designers to record and upload sounds.
 
 - npm install.
 - Configure S3 environment variables.
