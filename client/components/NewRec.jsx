@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactS3Uploader from 'react-s3-uploader'
 
 let fileInput = null
 

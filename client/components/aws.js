@@ -1,6 +1,4 @@
 import request from 'aws-sdk/dist/aws-sdk'
-const dotenv = require('dotenv')
-dotenv.load()
 
 export default {
   getAudio: getAudio,

@@ -1,6 +1,5 @@
 import React from 'react'
 import aws from './aws'
-import Center from 'react-center'
 import record from './record'
 import visualizer from './visualizer'
 
