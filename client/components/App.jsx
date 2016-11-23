@@ -1,5 +1,5 @@
 import React from 'react'
-import aws from './aws'
+import aws from '../aws'
 import record from './record'
 import visualizer from './visualizer'
 
