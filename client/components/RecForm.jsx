@@ -7,6 +7,11 @@ export default React.createClass({
         <input type="text" placeholder="Clip Name" />
         <input type="text" placeholder="Recordist" />
         <input type="text" placeholder="Description" />
+        <br />
+        <input
+          type="button"
+          value="Submit Sound"
+          onClick={() => this.props.submit} />
       </div>
     )
   }
