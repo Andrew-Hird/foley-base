@@ -11,7 +11,7 @@ export default React.createClass({
         <input
           type="button"
           value="Submit Sound"
-          onClick={() => this.props.submit} />
+          onClick={() => this.props.submit()} />
       </div>
     )
   }

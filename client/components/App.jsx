@@ -1,18 +1,21 @@
 import React from 'react'
 import aws from '../aws'
-import record from './record'
+import record from '../record'
 import visualizer from './visualizer'
 
 import Header from './Header'
 import NewRec from './NewRec'
 import Recordings from './Recordings'
 
+let blob = null
+
 export default React.createClass({
   getInitialState() {
     return {
       allAudio: [],
       isRec: false,
-      isLoading: true
+      isLoading: true,
+      showResults: false
     }
   },
 
@@ -47,9 +50,8 @@ export default React.createClass({
   endRecord() {
     visualizer.blackLine()
     record.endRecord()
-    .then(this.setState({isRec: false, isLoading: true}))
-    .then(this.addAudio)
-    .then(setTimeout(this.getAudio, 3000))
+    .then(this.setState({isRec: false, showResults: true}))
+    .then(this.setBlob)
     .catch(function(err) {
       console.log(err)
     })
@@ -65,8 +67,18 @@ export default React.createClass({
 
   },
 
-  addAudio(clipInfo) {
-    aws.addAudio(clipInfo)
+  setBlob(clipInfo) {
+    blob = clipInfo
+  },
+
+  addAudio(blob) {
+    aws.addAudio(blob)
+  },
+
+  submit () {
+    this.setState({showResults: false, isLoading: true})
+    this.addAudio(blob)
+    setTimeout(this.getAudio, 3000)
   },
 
   renderAudio(err, allAudio) {
@@ -81,7 +93,7 @@ export default React.createClass({
         <div id="main">
             <Header text="Foley Base"/>
             <div className="rec-con">
-              <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload} isRec={this.state.isRec} handleInput={this.handleInput} />
+              <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload} isRec={this.state.isRec} handleInput={this.handleInput} submit={this.submit} showResults={this.state.showResults} />
             </div>
             <img className={this.state.isLoading ? 'isLoading' : 'notLoading'} src="https://popp.undp.org/Style%20Library/POPP/images/load.gif" />
             <hr />
