@@ -1,5 +1,7 @@
 import React from 'react'
 
+import RecForm from './RecForm'
+
 let fileInput = null
 
 export default React.createClass({
@@ -18,6 +20,7 @@ export default React.createClass({
           <a href="#" className="buttRec" onClick={() => this.props.endRecord()}><img className="recButt" src="http://www.myiconfinder.com/uploads/iconsets/9b507c9c308162d28fbf621c59b363f4.png"/></a>
         </div>
         <input id="upload" type='file' onChange={this.props.handleInput} />
+        <RecForm />
         </div>
     )
   }
