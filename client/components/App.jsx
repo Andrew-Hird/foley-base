@@ -8,6 +8,7 @@ import NewRec from './NewRec'
 import Recordings from './Recordings'
 
 let audio = null
+let upload = null
 
 export default React.createClass({
   getInitialState() {
@@ -15,7 +16,8 @@ export default React.createClass({
       allAudio: [],
       isRec: false,
       isLoading: true,
-      showResults: false
+      showRecForm: false,
+      showUploadForm: false
     }
   },
 
@@ -50,7 +52,7 @@ export default React.createClass({
   endRecord() {
     visualizer.blackLine()
     record.endRecord()
-    .then(this.setState({isRec: false, showResults: true}))
+    .then(this.setState({isRec: false, showRecForm: true}))
     .then(this.setBlob)
     .catch(function(err) {
       console.log(err)
@@ -58,12 +60,8 @@ export default React.createClass({
   },
 
   handleInput(e) {
-    aws.addFile(e.currentTarget.files[0])
-    .then(this.setState({isLoading: true}))
-    .then(setTimeout(this.getAudio, 3000))
-    .catch(function(err) {
-      console.log(err)
-    })
+    upload = e.currentTarget.files[0]
+    this.setState({showUploadForm: true})
   },
 
   setBlob(blob) {
@@ -74,9 +72,15 @@ export default React.createClass({
     aws.addAudio(audio, clipName, recordist, description)
   },
 
-  submit (clipName, recordist, description) {
-    this.setState({showResults: false, isLoading: true})
+  submitRec (clipName, recordist, description) {
+    this.setState({showRecForm: false, isLoading: true})
     this.addAudio(audio, clipName, recordist, description)
+    setTimeout(this.getAudio, 3000)
+  },
+
+  submitUpload (clipName, recordist, description) {
+    this.setState({showUploadForm: false, isLoading: true})
+    aws.addFile(upload, clipName, recordist, description)
     setTimeout(this.getAudio, 3000)
   },
 
@@ -92,7 +96,16 @@ export default React.createClass({
         <div id="main">
             <Header text="Foley Base"/>
             <div className="rec-con">
-              <NewRec text="Click below to record" startRecord={this.startRecord} endRecord={this.endRecord} afterUpload={this.afterUpload} isRec={this.state.isRec} handleInput={this.handleInput} submit={this.submit} showResults={this.state.showResults} />
+              <NewRec text="Click below to record"
+                startRecord={this.startRecord}
+                endRecord={this.endRecord}
+                afterUpload={this.afterUpload}
+                isRec={this.state.isRec}
+                handleInput={this.handleInput}
+                submitRec={this.submitRec}
+                submitUpload={this.submitUpload}
+                showRecForm={this.state.showRecForm}
+                showUploadForm={this.state.showUploadForm} />
             </div>
             <img className={this.state.isLoading ? 'isLoading' : 'notLoading'} src="https://popp.undp.org/Style%20Library/POPP/images/load.gif" />
             <hr />

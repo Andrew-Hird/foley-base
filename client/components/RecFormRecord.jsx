@@ -20,7 +20,7 @@ export default React.createClass({
         <input
           type="button"
           value="Submit Sound"
-          onClick={() => this.props.submit(this.state.clipName, this.state.recordist, this.state.description)} />
+          onClick={() => this.props.submitRec(this.state.clipName, this.state.recordist, this.state.description)} />
       </div>
     )
   }

@@ -91,22 +91,20 @@ function addAudio(audio, clipName, recordist, description) {
   })
 }
 
-function addFile(file) {
+function addFile(upload, clipName, recordist, description) {
   return new Promise(function(resolve, reject) {
-    if (file) {
+    if (upload) {
       try {
-        var clipName = prompt('Enter a name of your sound clip', file.name)
-        var clipAuthor = prompt('Who recorded the sound clip?', file.name)
-        var clipDescription = prompt('Tell me about the sound', file.name)
         var params = {
-          Key: file.name,
-          Body: file,
+          Key: recordist + '-' + clipName + '.wav',
+          Body: upload,
           Metadata: {
-            author: clipAuthor,
+            author: recordist,
             clipName: clipName,
-            clipDescription: clipDescription
+            clipDescription: description
           }
         }
+        console.log(params)
         s3bucket.upload(params, function(err, file) {
           if (err) {
             console.log("Error uploading data: ", err)
