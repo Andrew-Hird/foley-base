@@ -104,7 +104,6 @@ function addFile(upload, clipName, recordist, description) {
             clipDescription: description
           }
         }
-        console.log(params)
         s3bucket.upload(params, function(err, file) {
           if (err) {
             console.log("Error uploading data: ", err)
