@@ -61,17 +61,17 @@ function audioDetails(fileName, cb) {
   })
 }
 
-function addAudio(clipInfo) {
+function addAudio(audio, clipName, recordist, description) {
   return new Promise(function(resolve, reject) {
-    if (clipInfo) {
+    if (audio) {
       try {
         var params = {
-          Key: clipInfo.clipAuthor + '-' + clipInfo.clipName + '.wav',
-          Body: clipInfo.blob,
+          Key: recordist + '-' + clipName + '.wav',
+          Body: audio,
           Metadata: {
-            author: clipInfo.clipAuthor,
-            clipName: clipInfo.clipName,
-            clipDescription: clipInfo.clipDescription
+            author: recordist,
+            clipName: clipName,
+            clipDescription: description
           }
         }
         s3bucket.upload(params, function(err, data) {

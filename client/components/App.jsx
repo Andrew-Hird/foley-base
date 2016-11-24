@@ -7,7 +7,7 @@ import Header from './Header'
 import NewRec from './NewRec'
 import Recordings from './Recordings'
 
-let blob = null
+let audio = null
 
 export default React.createClass({
   getInitialState() {
@@ -64,20 +64,19 @@ export default React.createClass({
     .catch(function(err) {
       console.log(err)
     })
-
   },
 
-  setBlob(clipInfo) {
-    blob = clipInfo
+  setBlob(blob) {
+    audio = blob
   },
 
-  addAudio(blob) {
-    aws.addAudio(blob)
+  addAudio(audio, clipName, recordist, description) {
+    aws.addAudio(audio, clipName, recordist, description)
   },
 
-  submit () {
+  submit (clipName, recordist, description) {
     this.setState({showResults: false, isLoading: true})
-    this.addAudio(blob)
+    this.addAudio(audio, clipName, recordist, description)
     setTimeout(this.getAudio, 3000)
   },
 

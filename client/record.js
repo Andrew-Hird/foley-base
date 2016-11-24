@@ -50,20 +50,11 @@ function endRecord() {
     }
 
     mediaRecorder.onstop = function(e) {
-      var clipName = prompt('Enter a name of your sound clip')
-      var clipAuthor = prompt('Who recorded the sound clip?')
-      var clipDescription = prompt('Tell me about the sound')
       var blob = new Blob(chunks, {
         mimeType: 'audio/wav'
       })
-      var clipInfo = {
-        clipName,
-        clipAuthor,
-        clipDescription,
-        blob
-      }
       chunks = []
-      resolve(clipInfo)
+      resolve(blob)
     }
   })
 }
