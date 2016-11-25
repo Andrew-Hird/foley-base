@@ -1,7 +1,7 @@
 import React from 'react'
 import aws from '../aws'
 import record from '../record'
-import visualizer from './visualizer'
+import visualizer from '../visualizer'
 
 import Header from './Header'
 import NewRec from './NewRec'
