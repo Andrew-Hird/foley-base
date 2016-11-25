@@ -6,10 +6,6 @@ import RecFormUpload from './RecFormUpload'
 let fileInput = null
 
 export default React.createClass({
-  onClick: function() {
-    console.log('file entered')
-    this.setState({showForm: true});
-  },
   render() {
     return (
       <div id="newRec">
