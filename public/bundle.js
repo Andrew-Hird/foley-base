@@ -21449,7 +21449,8 @@
 	      isRec: false,
 	      isLoading: true,
 	      showRecForm: false,
-	      showUploadForm: false
+	      showUploadForm: false,
+	      audioBlob: null
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
@@ -21485,6 +21486,8 @@
 	  },
 	  setBlob: function setBlob(blob) {
 	    audio = blob;
+	    var audioForBlob = URL.createObjectURL(blob);
+	    this.setState({ audioBlob: audioForBlob });
 	  },
 	  addAudio: function addAudio(audio, clipName, recordist, description) {
 	    _aws2.default.addAudio(audio, clipName, recordist, description);
@@ -21522,7 +21525,8 @@
 	          submitRec: this.submitRec,
 	          submitUpload: this.submitUpload,
 	          showRecForm: this.state.showRecForm,
-	          showUploadForm: this.state.showUploadForm })
+	          showUploadForm: this.state.showUploadForm,
+	          audioBlob: this.state.audioBlob })
 	      ),
 	      _react2.default.createElement('img', { className: this.state.isLoading ? 'isLoading' : 'notLoading', src: 'https://popp.undp.org/Style%20Library/POPP/images/load.gif' }),
 	      _react2.default.createElement('hr', null),
@@ -123636,7 +123640,8 @@
 	        )
 	      ),
 	      _react2.default.createElement('input', { id: 'upload', type: 'file', onChange: this.props.handleInput }),
-	      this.props.showRecForm ? _react2.default.createElement(_RecFormRecord2.default, { submitRec: this.props.submitRec }) : null,
+	      this.props.showRecForm ? _react2.default.createElement(_RecFormRecord2.default, { submitRec: this.props.submitRec,
+	        audioBlob: this.props.audioBlob }) : null,
 	      this.props.showUploadForm ? _react2.default.createElement(_RecFormUpload2.default, { submitUpload: this.props.submitUpload }) : null
 	    );
 	  }
@@ -123675,6 +123680,8 @@
 	    return _react2.default.createElement(
 	      "div",
 	      null,
+	      _react2.default.createElement("audio", { controls: "controls", src: this.props.audioBlob }),
+	      _react2.default.createElement("br", null),
 	      _react2.default.createElement("input", { type: "text", placeholder: "Clip Name", onChange: this.handleClipNameChange }),
 	      _react2.default.createElement("input", { type: "text", placeholder: "Recordist", onChange: this.handleRecordistChange }),
 	      _react2.default.createElement("input", { type: "text", placeholder: "Description", onChange: this.handleDescriptionChange }),
