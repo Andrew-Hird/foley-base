@@ -123597,34 +123597,42 @@
 	      { id: 'newRec' },
 	      _react2.default.createElement(
 	        'div',
-	        { className: this.props.isRec ? 'is-rec' : 'not-rec' },
+	        { className: 'all-buttons' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'led-box' },
-	          _react2.default.createElement('div', { className: 'led-red' }),
+	          { className: this.props.isRec ? 'is-rec' : 'not-rec' },
 	          _react2.default.createElement(
-	            'em',
-	            null,
-	            'recording'
+	            'div',
+	            { className: 'led-box' },
+	            _react2.default.createElement('div', { className: 'led-red' }),
+	            _react2.default.createElement(
+	              'em',
+	              null,
+	              'recording'
+	            )
 	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'recButtons' },
-	        _react2.default.createElement(
-	          'a',
-	          { href: '#', className: 'buttRec', onClick: function onClick() {
-	              return _this.props.startRecord();
-	            } },
-	          _react2.default.createElement('img', { className: 'recButt', src: '../images/record.png' })
 	        ),
 	        _react2.default.createElement(
-	          'a',
-	          { href: '#', className: 'buttRec', onClick: function onClick() {
-	              return _this.props.endRecord();
-	            } },
-	          _react2.default.createElement('img', { className: 'recButt', src: 'http://www.myiconfinder.com/uploads/iconsets/9b507c9c308162d28fbf621c59b363f4.png' })
+	          'div',
+	          { className: this.props.isRec ? 'not-rec' : 'is-rec' },
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', onClick: function onClick() {
+	                return _this.props.startRecord();
+	              } },
+	            _react2.default.createElement('img', { className: 'recButt', src: 'images/record.png' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: this.props.isRec ? 'is-rec' : 'not-rec' },
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', onClick: function onClick() {
+	                return _this.props.endRecord();
+	              } },
+	            _react2.default.createElement('img', { className: 'recButt', src: 'images/stop.png' })
+	          )
 	        )
 	      ),
 	      _react2.default.createElement('input', { id: 'upload', type: 'file', onChange: this.props.handleInput }),
