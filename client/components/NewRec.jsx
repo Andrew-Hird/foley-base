@@ -29,7 +29,8 @@ export default React.createClass({
 
         <input id="upload" type='file' onChange={this.props.handleInput}/>
 
-        {this.props.showRecForm ? <RecFormRecord submitRec={this.props.submitRec} /> : null}
+        {this.props.showRecForm ? <RecFormRecord submitRec={this.props.submitRec}
+        audioBlob={this.props.audioBlob} /> : null}
         {this.props.showUploadForm ? <RecFormUpload submitUpload={this.props.submitUpload} /> : null}
 
       </div>

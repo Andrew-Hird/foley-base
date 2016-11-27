@@ -17,7 +17,8 @@ export default React.createClass({
       isRec: false,
       isLoading: true,
       showRecForm: false,
-      showUploadForm: false
+      showUploadForm: false,
+      audioBlob: null
     }
   },
 
@@ -66,6 +67,8 @@ export default React.createClass({
 
   setBlob(blob) {
     audio = blob
+    const audioForBlob = URL.createObjectURL(blob)
+    this.setState({audioBlob: audioForBlob})
   },
 
   addAudio(audio, clipName, recordist, description) {
@@ -105,7 +108,8 @@ export default React.createClass({
                 submitRec={this.submitRec}
                 submitUpload={this.submitUpload}
                 showRecForm={this.state.showRecForm}
-                showUploadForm={this.state.showUploadForm} />
+                showUploadForm={this.state.showUploadForm}
+                audioBlob={this.state.audioBlob} />
             </div>
             <img className={this.state.isLoading ? 'isLoading' : 'notLoading'} src="https://popp.undp.org/Style%20Library/POPP/images/load.gif" />
             <hr />

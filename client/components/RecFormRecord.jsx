@@ -13,6 +13,8 @@ export default React.createClass({
   render() {
     return (
       <div>
+      <audio controls="controls" src={this.props.audioBlob}></audio>
+      <br/>
         <input type="text" placeholder="Clip Name" onChange={this.handleClipNameChange}/>
         <input type="text" placeholder="Recordist" onChange={this.handleRecordistChange} />
         <input type="text" placeholder="Description" onChange={this.handleDescriptionChange} />
