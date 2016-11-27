@@ -123617,7 +123617,7 @@
 	          { href: '#', className: 'buttRec', onClick: function onClick() {
 	              return _this.props.startRecord();
 	            } },
-	          _react2.default.createElement('img', { className: 'recButt', src: 'http://www.clker.com/cliparts/d/b/c/f/13652249372108434179Record%20Button%20Microphone.svg.hi.png' })
+	          _react2.default.createElement('img', { className: 'recButt', src: '../images/record.png' })
 	        ),
 	        _react2.default.createElement(
 	          'a',

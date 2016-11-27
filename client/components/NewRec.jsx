@@ -17,9 +17,9 @@ export default React.createClass({
         </div>
 
         <div id="recButtons">
-          <a href="#" className="buttRec" onClick={() => this.props.startRecord()}><img className="recButt" src="http://www.clker.com/cliparts/d/b/c/f/13652249372108434179Record%20Button%20Microphone.svg.hi.png"/></a>
+          <a href="#" className="buttRec" onClick={() => this.props.startRecord()}><img className="recButt" src="images/record.png"/></a>
 
-          <a href="#" className="buttRec" onClick={() => this.props.endRecord()}><img className="recButt" src="http://www.myiconfinder.com/uploads/iconsets/9b507c9c308162d28fbf621c59b363f4.png"/></a>
+          <a href="#" className="buttRec" onClick={() => this.props.endRecord()}><img className="recButt" src="images/stop.png"/></a>
         </div>
 
         <input id="upload" type='file' onChange={this.props.handleInput}/>
