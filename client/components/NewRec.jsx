@@ -9,22 +9,22 @@ export default React.createClass({
   render() {
     return (
       <div id="newRec">
-        <div className={this.props.isRec ? 'is-rec' : 'not-rec'}>
-          <div className="led-box">
-            <div className="led-red"></div>
-            <em>recording</em>
-          </div>
-        </div>
 
-        <div id="recButtons">
-
-          <div className={this.props.isRec ? 'not-rec' : 'is-rec'}>
-            <a href="#" className="buttRec" onClick={() => this.props.startRecord()}><img className="recButt" src="images/record.png"/></a>
-          </div>
-
+        <div className="all-buttons">
           <div className={this.props.isRec ? 'is-rec' : 'not-rec'}>
-            <a href="#" className="buttRec" onClick={() => this.props.endRecord()}><img className="recButt" src="images/stop.png"/></a>
+            <div className="led-box">
+              <div className="led-red"></div>
+              <em>recording</em>
+            </div>
           </div>
+
+            <div className={this.props.isRec ? 'not-rec' : 'is-rec'}>
+              <a href="#" onClick={() => this.props.startRecord()}><img className="recButt" src="images/record.png"/></a>
+            </div>
+
+            <div className={this.props.isRec ? 'is-rec' : 'not-rec'}>
+              <a href="#" onClick={() => this.props.endRecord()}><img className="recButt" src="images/stop.png"/></a>
+            </div>
         </div>
 
         <input id="upload" type='file' onChange={this.props.handleInput}/>
